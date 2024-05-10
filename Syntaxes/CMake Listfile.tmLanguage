@@ -132,35 +132,89 @@
 		</dict>
 		<key>comments</key>
 		<dict>
-			<key>begin</key>
-			<string>(^[ \t]+)?(?=#)</string>
-			<key>beginCaptures</key>
-			<dict>
-				<key>1</key>
-				<dict>
-					<key>name</key>
-					<string>punctuation.whitespace.comment.leading.cmake</string>
-				</dict>
-			</dict>
-			<key>end</key>
-			<string>(?!\G)</string>
 			<key>patterns</key>
 			<array>
 				<dict>
 					<key>begin</key>
-					<string>#</string>
+					<string>(^[ \t]+)?(?=#\[)</string>
 					<key>beginCaptures</key>
 					<dict>
-						<key>0</key>
+						<key>1</key>
 						<dict>
 							<key>name</key>
-							<string>punctuation.definition.comment.cmake</string>
+							<string>punctuation.whitespace.comment.leading.cmake</string>
 						</dict>
 					</dict>
 					<key>end</key>
-					<string>\n</string>
-					<key>name</key>
-					<string>comment.line.number-sign.cmake</string>
+					<string>(?!\G)((?!^)[ \t]+\n)?</string>
+					<key>endCaptures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.whitespace.comment.trailing.cmake</string>
+						</dict>
+					</dict>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>begin</key>
+							<string>#\[(=+)?\[</string>
+							<key>beginCaptures</key>
+							<dict>
+								<key>0</key>
+								<dict>
+									<key>name</key>
+									<string>punctuation.definition.comment.begin.cmake</string>
+								</dict>
+							</dict>
+							<key>end</key>
+							<string>\]\1\]</string>
+							<key>endCaptures</key>
+							<dict>
+								<key>0</key>
+								<dict>
+									<key>name</key>
+									<string>punctuation.definition.comment.end.cmake</string>
+								</dict>
+							</dict>
+							<key>name</key>
+							<string>comment.block.cmake</string>
+						</dict>
+					</array>
+				</dict>
+				<dict>
+					<key>begin</key>
+					<string>(^[ \t]+)?(?=#)</string>
+					<key>beginCaptures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.whitespace.comment.leading.cmake</string>
+						</dict>
+					</dict>
+					<key>end</key>
+					<string>(?!\G)</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>begin</key>
+							<string>#</string>
+							<key>beginCaptures</key>
+							<dict>
+								<key>0</key>
+								<dict>
+									<key>name</key>
+									<string>punctuation.definition.comment.cmake</string>
+								</dict>
+							</dict>
+							<key>end</key>
+							<string>\n</string>
+							<key>name</key>
+							<string>comment.line.number-sign.cmake</string>
+						</dict>
+					</array>
 				</dict>
 			</array>
 		</dict>
